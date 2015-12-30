@@ -13,7 +13,7 @@ removeConfiguration() {
     local from=$(getLine $file "\#\[$name\]")
     local to=$(getLine $file "\#\[\/$name\]")
 
-    $(removeLines $from $to $file)
+    [ -z "$from" ] && [ -z "$to" ] && [ -z "$file" ] && $(removeLines $from $to $file)
 }
 
 removeLines() {

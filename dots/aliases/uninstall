@@ -24,7 +24,7 @@ DESTINATION=$HOME/.$NAME
 #
 # Copy sourcable file to the destination directory
 #
-rm $DESTINATION
+[ -f $DESTINATION ] && rm $DESTINATION
 p_info "[$NAME] [1/2] Removed sourceable file."
 
 #
