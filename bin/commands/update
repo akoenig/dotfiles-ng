@@ -8,15 +8,11 @@
 
 DOT_DIR="$HOME/.dotfiles"
 
-for file in $DOT_DIR/dots/aliases/uninstall; do
-	[ -r "$file" ] && [ -f "$file" ] && . "$file";
-done;
+. $DOT_DIR/dots/bin/commands/uninstall
 
 cd $DOT_DIR && git pull origin master
 
-for file in $DOT_DIR/dots/aliases/install; do
-    [ -r "$file" ] && [ -f "$file" ] && . "$file";
-done;
+. $DOT_DIR/dots/bin/commands/install
 
 unset file;
 

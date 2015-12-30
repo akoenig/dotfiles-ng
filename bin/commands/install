@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 #
 # Installs all dependencies and optional tools.
@@ -8,9 +8,16 @@
 
 DOT_DIR="$HOME/.dotfiles"
 
-for file in $DOT_DIR/dots/aliases/install; do
+source $DOT_DIR/bin/helpers/profile
+source $DOT_DIR/bin/helpers/typography
+
+for file in $DOT_DIR/dots/*/install; do
 	[ -r "$file" ] && [ -f "$file" ] && . "$file";
 done;
 
 unset file;
+
+p_info ""
+p_info ""
+p_finished "Please restart your terminal in order to finalize the installation."
 

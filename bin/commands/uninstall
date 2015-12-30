@@ -8,7 +8,7 @@
 
 DOT_DIR="$HOME/.dotfiles"
 
-for file in $DOT_DIR/dots/aliases/uninstall; do
+for file in $DOT_DIR/dots/*/uninstall; do
 	[ -r "$file" ] && [ -f "$file" ] && . "$file";
 done;
 
