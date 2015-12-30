@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+#
+# Script for installing the `.aliases` dotfiles.
+#
+# Author: André König <andre.koenig@posteo.de>
+#
+
+NAME=aliases
+
+#
+# Directory configuration
+#
+DOT_DIR="$HOME/.dotfiles"
+DOTS_DIR="$DOT_DIR/dots"
+
+#
+# Source helpers
+#
+source $DOT_DIR/bin/helpers/typography
+source $DOT_DIR/bin/helpers/profile
+
+p_info "[$NAME] Start to install ..."
+
+SOURCE=$DOTS_DIR/$NAME
+DESTINATION=$HOME/.$NAME
+
+#
+# Copy sourcable file to the destination directory
+#
+cp $SOURCE/source $DESTINATION
+p_info "[$NAME] [1/2] Copied the sourcable aliases file."
+
+#
+# Append the actual sourcable to the profile configuration
+#
+
+echo "" >> $PROFILE_CONFIGURATION
+echo "#[$NAME]" >> $PROFILE_CONFIGURATION
+echo "#" >> $PROFILE_CONFIGURATION
+echo "# Source the .aliases." >> $PROFILE_CONFIGURATION
+echo "#" >> $PROFILE_CONFIGURATION
+echo "source $DESTINATION" >> $PROFILE_CONFIGURATION
+echo "#[/$NAME]" >> $PROFILE_CONFIGURATION
+
+p_info "[$NAME] [2/2] Added sourcable aliases file to profile configuration."
+
+p_success "[$NAME] [DONE] Installed aliases."
+

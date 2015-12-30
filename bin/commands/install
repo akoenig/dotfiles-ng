@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+#
+# Installs all dependencies and optional tools.
+#
+# Author: André König <andre.koenig@posteo.de>
+#
+
+DOT_DIR="$HOME/.dotfiles"
+
+for file in $DOT_DIR/dots/aliases/install; do
+	[ -r "$file" ] && [ -f "$file" ] && . "$file";
+done;
+
+unset file;
+

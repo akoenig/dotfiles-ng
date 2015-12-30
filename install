@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+#
+# My dotfiles
+#
+# Author: André König <andre.koenig@posteo.de>
+#
+
+DOT_DIR="$HOME/.dotfiles"
+
+source $DOT_DIR/bin/helpers/profile
+
+if [ ! -z $PROFILE_CONFIGURATION ]; then
+	echo "Installing the dot CLI into $PROFILE_CONFIGURATION..."
+	echo "export PATH=$PATH:$DOT_DIR/bin" >> $PROFILE_CONFIGURATION && source $PROFILE_CONFIGURATION
+	echo "Success. Type in 'dot help' to get started."
+	exit 0
+fi

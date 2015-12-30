@@ -1,0 +1,31 @@
+ #!/usr/bin/env bash                                                                                                                    
+
+#
+# Helper which exposes functions for manipulating text files
+#
+# Author: André König <andre.koenig@posteo.de>
+#
+
+removeConfiguration() {
+    local name=$1
+    local file=$2
+   
+    local from=$(getLine $file "\#\[$name\]")
+    local to=$(getLine $file "\#\[\/$name\]")
+
+    $(removeLines $from $to $file)
+}
+
+removeLines() {
+    local file=$3
+
+    sed --in-place "$1,$2d" $file
+}
+
+getLine() {
+    local file=$1
+    local pattern=$2
+
+    echo $(grep -n "$pattern" $file | cut -f1 -d:)
+}
+

@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+#
+# The global hook CLI.
+#
+# Author: André König <andre.koenig@posteo.de>
+#
+
+DOT_DIR="$HOME/.dotfiles"
+
+source $DOT_DIR/bin/helpers/typography
+
+#
+#
+# Commands
+#
+print_help() {
+	. "$DOT_DIR/bin/commands/help"
+}
+install() {
+	. "$DOT_DIR/bin/commands/install"
+}
+update() {
+	. "$DOT_DIR/bin/commands/update"
+}
+uninstall() {
+    . "$DOT_DIR/bin/commands/uninstall"
+}
+
+#
+# Do something depending on the passed arguments.
+#
+if [ $# -eq 0 ]
+	then
+		print_help
+
+		exit 1
+	else
+		case "$1" in
+			"--help" | "-h" | "help")
+				print_help
+				;;
+			"install")
+				install
+				;;
+			"update")
+				update
+				;;
+            "uninstall")
+                uninstall
+                ;;
+			*)
+				p_fail "Fatal Error: Unknown argument '$1'. For help regarding the dotfiles CLI execute 'dot help'."
+
+				exit 1
+				;;
+		esac
+fi
+
+exit 0

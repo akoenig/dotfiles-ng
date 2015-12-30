@@ -1,0 +1,46 @@
+#!/usr/bin/env zsh
+
+#
+# Script for installing antigen
+#
+# Author: André König <andre.koenig@posteo.de>
+#
+
+NAME=antigen
+
+DOT_DIR="$HOME/.dotfiles"
+DOTS_DIR="$DOT_DIR/dots"
+
+source $DOT_DIR/bin/helpers/typography
+source $DOT_DIR/bin/helpers/profile
+
+SOURCE=$DOTS_DIR/antigen
+DESTINATION=$HOME
+
+p_info "[$NAME] Installing antigen..."
+
+curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > $DESTINATION/.antigen.zsh
+p_info "[$NAME] [1/3] Installed antigen script."
+
+#
+# Add sourceable to profile
+#
+echo "" >> $PROFILE_CONFIGURATION
+echo "#[$NAME]" >> $PROFILE_CONFIGURATION
+echo "# Source antigen" >> $PROFILE_CONFIGURATION
+echo "source $DESTINATION/.antigen.zsh && source $HOME/.antigenrc" >> $PROFILE_CONFIGURATION
+echo "#[/$NAME]" >> $PROFILE_CONFIGURATION
+p_info "[$NAME] [2/3] Added sourceable to profile configuration"
+
+#
+# Install configuration file
+cp $SOURCE/antigenrc $DESTINATION/.antigenrc
+p_info "[$NAME] [3/3] Copied sourceable over."
+
+#
+# Source the configuration in order to install all dependencies
+#
+source $DESTINATION/.antigen.zsh && source $HOME/.antigenrc
+
+p_success "[$NAME] [DONE] Installed antigen."
+

@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+#
+# Helper which exposes the path to the respective profile
+# configuration file
+#
+# Author: André König <andre.koenig@posteo.de>
+#
+
+SHELLTYPE="$(basename /$SHELL)"
+
+if [ $SHELLTYPE = "bash" ]; then
+    if [ -f "$HOME/.bashrc" ]; then
+		PROFILE_CONFIGURATION="$HOME/.bashrc"
+	elif [ -f "$HOME/.bash_profile" ]; then
+		PROFILE_CONFIGURATION="$HOME/.bash_profile"
+	fi
+	elif [ $SHELLTYPE = "zsh" ]; then
+		PROFILE_CONFIGURATION="$HOME/.zshrc"
+fi
+
+if [ -z $PROFILE_CONFIGURATION ]; then
+	if [ -f "$PROFILE" ]; then
+		PROFILE_CONFIGURATION="$PROFILE"
+	elif [ -f "$HOME/.profile" ]; then
+		PROFILE_CONFIGURATION="$HOME/.profile"
+	elif [ -f "$HOME/.bashrc" ]; then
+		PROFILE_CONFIGURATION="$HOME/.bashrc"
+	elif [ -f "$HOME/.bash_profile" ]; then
+		PROFILE_CONFIGURATION="$HOME/.bash_profile"
+	elif [ -f "$HOME/.zshrc" ]; then
+		PROFILE_CONFIGURATION="$HOME/.zshrc"
+	fi
+fi
+
+if [ -z $PROFILE_CONFIGURATION ]; then
+	echo "Your bash profile couldn't be detected.
+
+Log:
+Profile	 $PROFILE_CONFIGURATION
+Shelltype:	$SHELLTYPE
+
+Please report this issue with the values reported above.
+https://github.com/akoenig/dotfiles/issues"
+
+	exit 1
+fi

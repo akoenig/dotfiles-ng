@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+#
+# Print the general cli usage guide.
+#
+# Author: André König <andre.koenig@posteo.de>
+#
+
+DOT_DIR="$HOME/.dotfiles"
+
+source $DOT_DIR/bin/helpers/typography
+
+echo "
+${underline}${bold}dotfiles${normal}${nounderline}
+
+${underline}Available commands:${nounderline}
+help        Prints the general CLI usage.
+install     Installs all dependencies and optional tools.
+update	    Self-Updates the local .dotfiles repository.
+uninstall   Uninstalls all dependencies and optional tools.
+
+Need help or got an issue? Head over to ${underline}https://github.com/akoenig/dotfiles/issues${nounderline}."

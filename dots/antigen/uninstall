@@ -1,0 +1,29 @@
+#!/usr/bin/env zsh
+
+#
+# Script for installing antigen
+#
+# Author: André König <andre.koenig@posteo.de>
+#
+
+NAME=antigen
+
+DOT_DIR="$HOME/.dotfiles"
+DOTS_DIR="$DOT_DIR/dots"
+
+source $DOT_DIR/bin/helpers/typography
+source $DOT_DIR/bin/helpers/profile
+source $DOT_DIR/bin/helpers/edit
+
+DESTINATION=$HOME
+
+p_info "[$NAME] Uninstalling antigen..."
+
+rm -rf $DESTINATION/.antigen*
+p_info "[$NAME] [1/2] Removed all antigen files"
+
+$(removeConfiguration $NAME $PROFILE_CONFIGURATION)
+p_info "[$NAME] [2/2] Removed the sourceable configuration from the profile configuration."
+
+p_success "[$NAME] [DONE] Uninstalled antigen."
+

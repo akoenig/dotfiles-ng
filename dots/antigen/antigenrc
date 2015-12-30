@@ -1,0 +1,15 @@
+antigen use oh-my-zsh
+
+# plugins
+antigen bundle git
+antigen bundle command-not-found
+antigen bundle z
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle akoenig/gulp.plugin.zsh
+antigen bundle akoenig/npm-run.plugin.zsh
+antigen bundle rimraf/k
+
+# theme
+antigen theme pure
+
+antigen apply

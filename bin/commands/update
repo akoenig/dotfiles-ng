@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+#
+# Updates all the dots
+#
+# Author: André König <andre.koenig@posteo.de>
+#
+
+DOT_DIR="$HOME/.dotfiles"
+
+for file in $DOT_DIR/dots/aliases/uninstall; do
+	[ -r "$file" ] && [ -f "$file" ] && . "$file";
+done;
+
+cd $DOT_DIR && git pull origin master
+
+for file in $DOT_DIR/dots/aliases/install; do
+    [ -r "$file" ] && [ -f "$file" ] && . "$file";
+done;
+
+unset file;
+

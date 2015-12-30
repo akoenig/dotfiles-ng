@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+#
+# Uninstall all the dots
+#
+# Author: André König <andre.koenig@posteo.de>
+#
+
+DOT_DIR="$HOME/.dotfiles"
+
+for file in $DOT_DIR/dots/aliases/uninstall; do
+	[ -r "$file" ] && [ -f "$file" ] && . "$file";
+done;
+
+unset file;
+

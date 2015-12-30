@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+#
+# Script for uninstalling the `.aliases` dotfile.
+#
+# Author: André König <andre.koenig@posteo.de>
+#
+
+NAME=aliases
+
+DOT_DIR=$HOME/.dotfiles
+
+#
+# Source helpers
+#
+source $DOT_DIR/bin/helpers/typography
+source $DOT_DIR/bin/helpers/profile
+source $DOT_DIR/bin/helpers/edit
+
+p_info "[$NAME] Uninstalling ..."
+
+DESTINATION=$HOME/.$NAME
+
+#
+# Copy sourcable file to the destination directory
+#
+rm $DESTINATION
+p_info "[$NAME] [1/2] Removed sourceable file."
+
+#
+# Remove the source directive from the profile configuration
+#
+$(removeConfiguration $NAME $PROFILE_CONFIGURATION)
+p_info "[$NAME] [2/2] Removed sourceable from the profile configuration."
+
+p_success "[$NAME] [DONE] Uninstalled aliases."
+
